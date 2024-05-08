@@ -1,7 +1,7 @@
 ---
   deployment:
     tasks:
-      - export DEPLOYPATH=/home/aywsolution/public_html/alexvasquez.regionloreto.gob.pe/
+      - export DEPLOYPATH=/home/aywsolution/public_html/alexvasquez.aywsolution.com/
       - /bin/rsync -av public/ $DEPLOYPATH
       - export DEPLOYPATH=/home/aywsolution/web_alexvasquez/
       - /bin/rsync -av ./ $DEPLOYPATH
