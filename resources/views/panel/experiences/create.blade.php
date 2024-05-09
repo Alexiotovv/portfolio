@@ -10,7 +10,7 @@
             @endif
             <br>
             <br>
-            <table class="table table-responsive">
+            <table id="dtexperiences" class="display table-striped table-hover dt-responsive" style="width: 100%">
                 <thead>
                     <th>id</th>
                     <th>actions</th>
@@ -20,9 +20,9 @@
                     <th>Order</th>
                     <th>description</th>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach ($experiences as $e)
-                        <tr>                        
+                        <tr >
                             <td>{{$e->id}}</td>
                             <td>
                                 <a href="" class="btn btn-warning btn btn-sm btnEditar"><i class="fas fa-edit"></i></a>
@@ -130,6 +130,9 @@
 
 
 
+
+
+
 <script src="../../js/jquery.js"></script>
 <script src="https://cdn.tiny.cloud/1/4wya3wjn43w5kzye9wy73hdg6o6fv12cdk8emfpbcztc175m/tinymce/6/tinymce.min.js"></script>
 <script>
@@ -224,4 +227,15 @@ function ejecutartinymce(id) {
    
 </script>
 
+<script>
+    $('#dtexperiences').DataTable({
+        responsive: true
+    });
+
+    // [ New Constructor ]
+    var newcs = $('#dtexperiences').DataTable();
+
+    new $.fn.dataTable.Responsive(newcs);
+    
+</script>
 @endsection

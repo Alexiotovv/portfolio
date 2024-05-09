@@ -5,7 +5,7 @@
         <div class="content">
             <button class="btn btn-info btn-sm" id="btnAgregarDatos" onclick="fnmodalDatos()">Add Data</button>
             <br>
-            <table class="table table-responsive">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <th>id</th>
                     <th>actions</th>
@@ -17,26 +17,24 @@
                 </thead>
                 <tbody>
                     @foreach ($datos as $d)
-                        <td>{{$d->id}}</td>
-                        <td>
-                            <a href="" class="btn btn-warning btn-sm btnEdit"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-                        </td>
-                        <td>{{$d->description}}</td>
-                        <td>{{$d->names}}</td>
-                        <td>
-                            {!! $d->detalles!!}
-                        </td>
-                        <td><img src="{{asset('storage/datos/'.$d->photo)}}" style="height: 100px;" alt=""></td>
-                        <td>{{$d->status}}</td>
+                        <tr>
+                            <td>{{$d->id}}</td>
+                            <td>
+                                <a href="" class="btn btn-warning btn-sm btnEdit"><i class="fas fa-edit"></i></a>
+                                <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td>{{$d->description}}</td>
+                            <td>{{$d->names}}</td>
+                            <td>
+                                {!! $d->detalles!!}
+                            </td>
+                            <td><img src="{{asset('storage/datos/'.$d->photo)}}" style="height: 100px;" alt=""></td>
+                            <td>{{$d->status}}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-        
-        
-
     </div>
 </div>
 

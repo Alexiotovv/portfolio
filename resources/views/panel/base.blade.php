@@ -21,6 +21,10 @@
  <!-- [Google Font : Public Sans] icon -->
 <link href="../../../../fonts.googleapis.com/css23da6.css?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="../../../assets/css/plugins/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="../../../assets/css/plugins/responsive.bootstrap5.min.css">
+
+
 <!-- [Tabler Icons] https://tablericons.com -->
 <link rel="stylesheet" href="../../../assets/fonts/tabler-icons.min.css" >
 <!-- [Feather Icons] https://feathericons.com -->
@@ -649,7 +653,10 @@
 <script src="../../../assets/js/pcoded.js"></script>
 <script src="../../../assets/js/plugins/feather.min.js"></script>
 
-
+<script src="../../../assets/js/plugins/dataTables.min.js"></script>
+<script src="../../../assets/js/plugins/dataTables.bootstrap5.min.js"></script>
+<script src="../../../assets/js/plugins/dataTables.responsive.min.js"></script>
+<script src="../../../assets/js/plugins/responsive.bootstrap5.min.js"></script>
 
 
 
@@ -844,6 +851,6 @@
 <!-- Mirrored from html.phoenixcoded.net/light-able/bootstrap/widget/w_data.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 15:07:45 GMT -->
 
 
-<script src="../../js/jquery.js"></script>
+<script src="../../../js/jquery.js"></script>
 
 </html>
