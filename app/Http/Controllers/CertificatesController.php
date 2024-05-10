@@ -21,7 +21,7 @@ class CertificatesController extends Controller
      */
     public function create()
     {
-        $cert=certificates::all();
+        $cert=DB::table('certificates')->orderBy('orden','asc')->get();
         $id_datos=DB::table('datos')->where('status',1)->first();
         if ($id_datos == null) {
             return view('panel.certificates.create',['certificates'=>$cert,'id_datos'=>'']);

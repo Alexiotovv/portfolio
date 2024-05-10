@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portfolios', function (Blueprint $table) {
+        Schema::create('cvs', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo', 100)->default('');
+            $table->string('nombre', 250)->default('');
             $table->string('file', 250)->default('');
-            $table->string('type', 250)->default('');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portfolios');
+        Schema::dropIfExists('cvs');
     }
 };

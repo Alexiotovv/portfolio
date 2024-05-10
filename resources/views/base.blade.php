@@ -27,7 +27,7 @@
                 <a class="nav-link" href="{{route('certificates')}}">Certificates</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Download CV</a>
+                <a class="nav-link" target="_blank" href="{{asset('storage/cv/CV_ALEX_VASQUEZ_290124.pdf')}}">Download CV</a>
               </li>
             </ul>
           </div>

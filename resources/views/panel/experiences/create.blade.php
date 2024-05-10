@@ -10,40 +10,35 @@
             @endif
             <br>
             <br>
-            <table id="dtexperiences" class="display table-striped table-hover dt-responsive" style="width: 100%">
-                <thead>
-                    <th>id</th>
-                    <th>actions</th>
-                    <th>place</th>
-                    <th>position</th>
-                    <th>date_range</th>
-                    <th>Order</th>
-                    <th>description</th>
-                </thead>
-                <tbody >
-                    @foreach ($experiences as $e)
-                        <tr >
-                            <td>{{$e->id}}</td>
-                            <td>
-                                <a href="" class="btn btn-warning btn btn-sm btnEditar"><i class="fas fa-edit"></i></a>
-                                <a href="" class="btn btn-danger btn btn-sm btnEliminar"><i class="fas fa-trash "></i></a>
-                            </td>
-                            <td>{{$e->place}}</td>
-                            <td>{{$e->position}}</td>
-                            <td>{{$e->date}}</td>
-                            <td>{{$e->orden}}</td>
-                            <td>
-                                {!! $e['description'] !!}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        
+            @foreach ($experiences as $e)
+
+                <div class="d-flex justify-content-center">
+                    <div class="card" style="width: 97%">
+                        <div class="card-header">
+                            {{$e->place}}
+                            
+                            <button class="btn btn-warning btn btn-sm" onclick="fnEditar({{$e->id}})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger btn btn-sm" onclick="fnEliminar({{$e->id}})"> <i class="fas fa-trash "></i></button>
+                            <p class="d-inline-block">Orden: {{$e->orden}}</p>
+                        
+                        
+                        
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{$e->position}}</h5>
+                            <h6>{{$e->date}}</h6>
+                            <p class="card-text">
+                            {!! $e->description !!}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            @endforeach
         </div>
     </div>
 </div>
-
-
 
 
  {{-- Nuevo Registro --}}
@@ -130,9 +125,6 @@
 
 
 
-
-
-
 <script src="../../js/jquery.js"></script>
 <script src="https://cdn.tiny.cloud/1/4wya3wjn43w5kzye9wy73hdg6o6fv12cdk8emfpbcztc175m/tinymce/6/tinymce.min.js"></script>
 <script>
@@ -143,18 +135,14 @@
 
     
 
-    $(document).on("click",".btnEliminar",function (e) {
-        e.preventDefault();
-        fila = $(this).closest("tr");
-        id = (fila).find('td:eq(0)').text();
+    function fnEliminar(id) { 
         $("#id_experience").val(id);
         $("#modalConfirmarEliminar").modal('show');
-    });
-    $(document).on("click",".btnEditar",function (e) { 
-        e.preventDefault();
-        fila = $(this).closest("tr");
-        id = (fila).find('td:eq(0)').text();
+
+     }
         
+    function fnEditar(id) { 
+
         $.ajax({
             type: "GET",
             url: "/panel/experiences/edit/"+id,
@@ -171,16 +159,17 @@
         });
         
         $("#modalUpdateExperiences").modal('show');
-    })
+    }
+    
 </script>
 
 
     
 <script type="text/javascript">
 
-$(document).ready(function() {
-    ejecutartinymce('#description');
-});
+    $(document).ready(function() {
+        ejecutartinymce('#description');
+    });
 
 
 function ejecutartinymce(id) { 
@@ -227,15 +216,5 @@ function ejecutartinymce(id) {
    
 </script>
 
-<script>
-    $('#dtexperiences').DataTable({
-        responsive: true
-    });
 
-    // [ New Constructor ]
-    var newcs = $('#dtexperiences').DataTable();
-
-    new $.fn.dataTable.Responsive(newcs);
-    
-</script>
 @endsection

@@ -21,7 +21,7 @@ class ExperiencesController extends Controller
      */
     public function create()
     {
-        $exp=experiences::all();
+        $exp=DB::table('experiences')->orderBy('orden','asc')->get();
         $id_datos=DB::table('datos')->where('status',1)->first();
         if ($id_datos == null) {
             return view('panel.experiences.create',['experiences'=>$exp,'id_datos'=>'']);

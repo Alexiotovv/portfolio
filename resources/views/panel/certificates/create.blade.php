@@ -9,41 +9,40 @@
                     <h6>No data or try enable a data register</h6>
                 @endif
                 <br>
-                <br>
-                <table class="table table-responsive">
-                    <thead>
-                        <th>id</th>
-                        <th>actions</th>
-                        <th>school</th>
-                        <th>title</th>
-                        <th>date</th>
-                        <th>orderBy</th>
-                        <th>description</th>
-                        <th>logo</th>
-                        <th>file</th>
+                <br> 
+               
+               
+                        @foreach ($certificates as $cert)
+                            
+                        <div class="d-flex justify-content-center">
+                            <div class="card" style="width: 97%">
+                              <div class="card-header">
+                                {{$cert->institute}}
+                                <img src="{{asset('storage/logos/'.$cert->logo)}}" class="img-fluid rounded-start" style="padding: 10px 10px;width:50px" alt="...">
 
-                    </thead>
-                    <tbody>
-                        @foreach ($certificates as $c)
-                            <tr>
-                                <td>{{$c->id}}</td>
-                                <td>
-                                    <a href="" class="btn btn-warning btn btn-sm btnEditar"><i class="fas fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger btn btn-sm btnEliminar"><i class="fas fa-trash "></i></a>
-                                </td>
-                                <td>{{$c->institute}}</td>
-                                <td>{{$c->title}}</td>
-                                <td>{{$c->date}}</td>
-                                <td>{{$c->orden}}</td>
-                                <td>
-                                    {!! $c['description'] !!}
-                                </td>
-                                <td><img src="{{asset('storage/logos/'.$c->logo)}}" style="height: 100px;" alt=""></td>
-                                <td><img src="{{asset('storage/files/'.$c->file)}}" style="height: 100px;" alt=""></td>
-                            </tr>
+                                <button class="btn btn-warning btn btn-sm" onclick="fnEditar({{$cert->id}})"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger btn btn-sm" onclick="fnEliminar({{$cert->id}})"> <i class="fas fa-trash "></i></button>
+                                <p class="d-inline-block">Orden: {{$cert->orden}}</p>
+                              </div>
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-8">
+                                    <h5 class="card-title">{{$cert->title}}</h5>
+                                    <h6>{{$cert->date}}</h6>
+                                    {!! $cert->description!!}
+                                  </div>
+                                  <div class="col-4">
+                                    <img src="{{asset('storage/files/'.$cert->file)}}" class="img-fluid rounded-start" style="padding: 10px 10px;width:200px" alt="...">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                          <br>
+
                         @endforeach
-                    </tbody>
-                </table>
+               
             </div>
         </div>
     </div>
@@ -82,62 +81,62 @@
     </div>
     {{-- End Nuevo Registro --}}
 
- {{-- Update Registro --}}
- <div class="modal fade modal-xl" id="modalUpdateCertificates" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content card mb-0 user-card">
-            <div class="modal-header">
-                <h5>Update Register</h5>
+    {{-- Update Registro --}}
+    <div class="modal fade modal-xl" id="modalUpdateCertificates" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card mb-0 user-card">
+                <div class="modal-header">
+                    <h5>Update Register</h5>
+                </div>
+                <div class="modal-body">
+                    
+                    <form action="{{route('panel.certificates.update')}}" method="POST" enctype="multipart/form-data">@csrf
+                        <input type="text" id="id" name="id" readonly hidden>
+                        <label for="">School</label>
+                        <input type="text" class="form-control" name="institute" id="institute" required>
+                        <label for="">Title</label>
+                        <textarea type="text" class="form-control" name="title" id="title" required></textarea>
+                        <label for="">Date</label>
+                        <input type="text" class="form-control" name="date" id="date" required>
+                        <label for="">Logo</label>
+                        <input type="file" class="form-control" name="logo" id="logo">
+                        <label for="">Certificate</label>
+                        <input type="file" class="form-control" name="file" id="file">
+                        <label for="">Order</label>
+                        <input type="number" class="form-control" name="orden" id="orden">
+                        <label for="">Description</label>
+                        <textarea type="text" class="form-control" name="description_update" id="description_update"></textarea>
+                        <br>
+                        <button class="btn btn-primary" type="submit" >Save</button>
+                    </form>
+                </div>
             </div>
-            <div class="modal-body">
-                
-                <form action="{{route('panel.certificates.update')}}" method="POST" enctype="multipart/form-data">@csrf
-                    <input type="text" id="id" name="id" readonly hidden>
-                    <label for="">School</label>
-                    <input type="text" class="form-control" name="institute" id="institute" required>
-                    <label for="">Title</label>
-                    <textarea type="text" class="form-control" name="title" id="title" required></textarea>
-                    <label for="">Date</label>
-                    <input type="text" class="form-control" name="date" id="date" required>
-                    <label for="">Logo</label>
-                    <input type="file" class="form-control" name="logo" id="logo">
-                    <label for="">Certificate</label>
-                    <input type="file" class="form-control" name="file" id="file">
-                    <label for="">Order</label>
-                    <input type="number" class="form-control" name="orden" id="orden">
-                    <label for="">Description</label>
-                    <textarea type="text" class="form-control" name="description_update" id="description_update"></textarea>
-                    <br>
-                    <button class="btn btn-primary" type="submit" >Save</button>
+        </div>
+    </div>
+    {{-- End Update Registro --}}
+
+
+    <div class="modal fade login-modal" id="modalConfirmarEliminar" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card mb-0 user-card">
+                <div class="modal-header">
+                    <h5>Delete Certificate</h5>                    
+                </div>
+                <div class="modal-body">
+                <form action="{{route('panel.certificates.destroy')}}" method="POST">@csrf
+                    <input type="text" name="id_certificate" id="id_certificate" hidden readonly>
+                    <h5>Please, confirm to delete.</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-{{-- End Update Registro --}}
-
-
-<div class="modal fade login-modal" id="modalConfirmarEliminar" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content card mb-0 user-card">
-            <div class="modal-header">
-                <h5>Delete Certificate</h5>                    
-            </div>
-            <div class="modal-body">
-            <form action="{{route('panel.certificates.destroy')}}" method="POST">@csrf
-                <input type="text" name="id_certificate" id="id_certificate" hidden readonly>
-                <h5>Please, confirm to delete.</h5>
-
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-danger">Yes</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 <script src="../../js/jquery.js"></script>
@@ -148,18 +147,8 @@
     }
     
 
-    $(document).on("click",".btnEliminar",function (e) {
-        e.preventDefault();
-        fila = $(this).closest("tr");
-        id = (fila).find('td:eq(0)').text();
-        $("#id_certificate").val(id);
-        $("#modalConfirmarEliminar").modal('show');
-    });
-    $(document).on("click",".btnEditar",function (e) { 
-        e.preventDefault();
-        fila = $(this).closest("tr");
-        id = (fila).find('td:eq(0)').text();
-        
+    
+    function fnEditar(id) { 
         $.ajax({
             type: "GET",
             url: "/panel/certificates/edit/"+id,
@@ -176,16 +165,21 @@
         });
         
         $("#modalUpdateCertificates").modal('show');
-    })
+    }
+
+    function fnEliminar(id) {  
+        $("#id_certificate").val(id);
+        $("#modalConfirmarEliminar").modal('show');
+    };
 </script>
 
 
     
 <script type="text/javascript">
 
-$(document).ready(function() {
-    ejecutartinymce('#description');
-});
+    $(document).ready(function() {
+        ejecutartinymce('#description');
+    });
 
 
 function ejecutartinymce(id) { 
@@ -232,4 +226,15 @@ function ejecutartinymce(id) {
    
 </script>
 
+<script>
+    $('#dtexperiences').DataTable({
+        responsive: true
+    });
+
+    // [ New Constructor ]
+    var newcs = $('#dtexperiences').DataTable();
+
+    new $.fn.dataTable.Responsive(newcs);
+    
+</script>
 @endsection
