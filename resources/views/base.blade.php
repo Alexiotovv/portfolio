@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/bootstrap.css">
 </head>
-<body>
+<body style="background-color: rgb(235, 242, 242) ">
     
     {{-- Menu --}}
 
