@@ -7,11 +7,16 @@
     <title>Alex Vasquez</title>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../../assets/fonts/tabler-icons.min.css" >
+  <!-- [Feather Icons] https://feathericons.com -->
+  <link rel="stylesheet" href="../../../assets/fonts/feather.css" >
+  <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+  <link rel="stylesheet" href="../../../assets/fonts/fontawesome.css" >
+    @yield('extra_css')
 </head>
 <body style="background-color: rgb(235, 242, 242) ">
     
     {{-- Menu --}}
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid justify-content-center">
           <a class="navbar-brand" href="#">alexiotovv@gmail.com</a>
@@ -33,10 +38,14 @@
           </div>
         </div>
     </nav>
-      {{-- End Menu --}}
+    {{-- End Menu --}}
 
       @yield('content')
 
     <script src="../../../js/bootstrap.bundle.min.js"></script>
+    <script src="../../../assets/js/fonts/custom-font.js"></script>
+    <script src="../../../assets/js/pcoded.js"></script>
+    <script src="../../../assets/js/plugins/feather.min.js"></script>
+
 </body>
 </html>

@@ -1,10 +1,22 @@
 @extends('base')
+
 @section('content')
+
+  <style>
+    .zoom-img {
+      cursor: zoom-in; /* Cambia el cursor a un ícono de lupa */
+    }
+    .zoom-img:hover {
+        transform: scale(1.05); /* Aumenta ligeramente el tamaño de la imagen */
+        transition: transform 0.3s ease;
+    }
+    
+
+  </style>
 
   <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb" style="place-content: center;">
       <li class="breadcrumb-item active" aria-current="page">/ <a href="{{route('home')}}">Home</a> / Certificates</li>
-      
     </ol>
   </nav>
 
@@ -72,7 +84,19 @@
             {!! $cert->description!!}
           </div>
           <div class="col-4">
-            <img src="{{asset('storage/files/'.$cert->file)}}" class="img-fluid rounded-start" style="padding: 10px 10px;width:200px" alt="...">
+            <a href="{{ asset('storage/files/'.$cert->file) }}" download class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="descargar documento">
+              <i class="fas fa-arrow-alt-circle-down"></i>
+            </a>
+            <br>
+          
+            <img src="{{asset('storage/files/'.$cert->file)}}" 
+              class="img-fluid rounded-start zoom-img" 
+              style="padding: 10px 10px;width:200px" 
+              alt="..."
+              data-bs-toggle="modal" 
+              data-bs-target="#imageModal"
+              onclick="openModal('{{ asset('storage/files/'.$cert->file) }}')">
+
           </div>
         </div>
       </div>
@@ -84,4 +108,26 @@
 @endforeach
 
 
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-body d-flex justify-content-center">
+        <img id="modalImage" src="" class="img-fluid" alt="...">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+   function openModal(imageSrc) {
+    document.getElementById('modalImage').src = imageSrc;
+  }
+</script>
+
+
+
 @endsection
+
+    
